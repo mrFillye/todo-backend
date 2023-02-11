@@ -8,3 +8,12 @@ export const createTodo = async (payload, res) => {
   }
   res.send();
 };
+
+export const getTodosList = async (res) => {
+  const todos = await Todo.findAll();
+  const todosList = JSON.stringify(todos, null, 2);
+
+  res.send(todosList);
+
+  return todosList;
+};

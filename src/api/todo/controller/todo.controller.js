@@ -1,10 +1,11 @@
 import express from "express";
-import { createTodo } from "../service/todo.service.js";
+import { createTodo, getTodosList } from "../service/todo.service.js";
 
 const contoller = express.Router();
 
-contoller.post("/todo", async ({ body }, res) => {
-  return await createTodo(body, res);
-});
+contoller
+  .route("/todo")
+  .post(async ({ body }, res) => await createTodo(body, res))
+  .get(async (_, res) => await getTodosList(res));
 
 export default contoller;
